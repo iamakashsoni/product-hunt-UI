@@ -156,8 +156,12 @@ const isAuthenticated = ref(!!token);
 const fetchData = async () => {
   try {
     const [productRes, commentsRes] = await Promise.all([
-      fetch(`http://localhost:5000/api/products/${route.params.id}`),
-      fetch(`http://localhost:5000/api/products/${route.params.id}/comments`),
+      fetch(
+        `https://product-hunt-api.onrender.com/api/products/${route.params.id}`
+      ),
+      fetch(
+        `https://product-hunt-api.onrender.com/api/products/${route.params.id}/comments`
+      ),
     ]);
     product.value = await productRes.json();
     comments.value = await commentsRes.json();
@@ -181,7 +185,7 @@ const submitComment = async () => {
   if (!newComment.value.trim() || !isAuthenticated.value) return;
   try {
     const res = await fetch(
-      `http://localhost:5000/api/products/${route.params.id}/comments`,
+      `https://product-hunt-api.onrender.com/api/products/${route.params.id}/comments`,
       {
         method: "POST",
         headers: {
@@ -206,7 +210,7 @@ const submitReply = async (commentId) => {
 
   try {
     const res = await fetch(
-      `http://localhost:5000/api/products/reply/${commentId}`,
+      `https://product-hunt-api.onrender.com/api/products/reply/${commentId}`,
       {
         method: "POST",
         headers: {

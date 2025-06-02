@@ -83,13 +83,16 @@ async function handleSubmit() {
   error.value = "";
 
   try {
-    const res = await $fetch("http://localhost:5000/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: form,
-    });
+    const res = await $fetch(
+      "https://product-hunt-api.onrender.com/api/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: form,
+      }
+    );
 
     localStorage.setItem("token", res.token);
     localStorage.setItem("user", JSON.stringify(res.user));

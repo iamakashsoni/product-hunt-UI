@@ -129,7 +129,9 @@ const limit = 4;
 
 const fetchCategories = async () => {
   try {
-    const res = await fetch("http://localhost:5000/api/products/categories");
+    const res = await fetch(
+      "https://product-hunt-api.onrender.com/api/products/categories"
+    );
     const data = await res.json();
     categories.value = data.categories || [];
   } catch (err) {
@@ -145,7 +147,7 @@ const fetchProducts = async () => {
       ? `&category=${selectedCategory.value}`
       : "";
     const res = await fetch(
-      `http://localhost:5000/api/products?page=${page.value}&limit=${limit}&sortBy=${sortBy.value}${cat}`
+      `https://product-hunt-api.onrender.com/api/products?page=${page.value}&limit=${limit}&sortBy=${sortBy.value}${cat}`
     );
     const data = await res.json();
     if (data?.products?.length) {
@@ -190,7 +192,7 @@ const upvote = async (productId) => {
   if (!token) return alert("⚠️ You must be logged in to upvote.");
   try {
     const res = await fetch(
-      `http://localhost:5000/api/products/${productId}/upvote`,
+      `https://product-hunt-api.onrender.com/api/products/${productId}/upvote`,
       {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
